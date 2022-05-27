@@ -90,9 +90,40 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
     }
 
     @Override
+    public int getPaletteColor() {
+        return toolbarColor;
+    }
+
+    private void setColors(int color) {
+        toolbarColor = color;
+        binding.appBarLayout.setBackgroundColor(color);
+        binding.toolbarBg.setBackgroundColor(getPaletteColor());
+        super.setStatusBarColor(getColor(R.color.overlay_clear));
+
+        setColor(color);
+
+        // needed to auto readjust the toolbar content color
+        setSupportActionBar(binding.toolbar);
+
+        int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, color);
+
+        binding.durationText.setTextColor(secondaryTextColor);
+        binding.songCountText.setTextColor(secondaryTextColor);
+        binding.albumCountText.setTextColor(secondaryTextColor);
+    }
+
+    @Override
+    public void setStatusBarColor(int color) {
+
+        // the toolbar is always light at the moment
+        setLightStatusBar(false);
+    }
+
+    @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        float headerAlpha = 1;
-        binding.header.setAlpha(headerAlpha);
+        float toolbarAlpha = Math.max(0, (-2 * (float) verticalOffset) / headerViewHeight) - 2;
+        binding.toolbarBg.setAlpha(toolbarAlpha);
+
     }
 
     @Override
@@ -160,26 +191,6 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
                 });
     }
 
-    @Override
-    public int getPaletteColor() {
-        return toolbarColor;
-    }
-
-    private void setColors(int color) {
-        binding.appBarLayout.setBackgroundColor(color);
-
-        setColor(color);
-
-        // needed to auto readjust the toolbar content color
-        setSupportActionBar(binding.toolbar);
-
-        int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, color);
-
-        binding.durationText.setTextColor(secondaryTextColor);
-        binding.songCountText.setTextColor(secondaryTextColor);
-        binding.albumCountText.setTextColor(secondaryTextColor);
-    }
-
     private void setUpToolbar() {
         setSupportActionBar(binding.toolbar);
         binding.toolbar.setTitle(null);
@@ -224,7 +235,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
 
     @Override
     public void onCreateCab(AttachedCab cab) {
-        cab.backgroundColor(null, getPaletteColor());
+        cab.backgroundColor(null, getColor(R.color.overlay_clear));
 
         this.cab = cab;
     }
@@ -239,19 +250,10 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void setStatusBarColor(int color) {
-        super.setStatusBarColor(getColor(R.color.overlay_clear));
-
-        // the toolbar is always light at the moment
-        setLightStatusBar(false);
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.M)
     private void setArtist(Artist artist) {
         this.artist = artist;
 
+        binding.toolbar.setTitle(artist.name);
         binding.toolbar.setTitleTextColor(getColor(R.color.overlay_clear));
         binding.artistTitleText.setText(artist.name);
         binding.songCountText.setText(MusicUtil.getSongCountString(this, artist.songs.size()));

@@ -25,19 +25,9 @@
                 app:layout_scrollFlags="scroll"
                 tools:ignore="UnusedAttribute">
 
-                <include layout="@layout/status_bar" />
-
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    style="@style/Toolbar"
-                    android:layout_marginTop="@dimen/status_bar_padding"
-                    android:background="@android:color/transparent" />
-
-                <ViewStub
-                    android:id="@+id/cab_stub"
-                    android:layout_width="match_parent"
-                    android:layout_height="?android:attr/actionBarSize"
-                    android:layout_marginTop="@dimen/status_bar_padding"/>
+                <include
+                    android:id="@+id/status_bar"
+                    layout="@layout/status_bar" />
 
                 <ImageView
                     android:id="@+id/image"
@@ -46,7 +36,6 @@
                     android:alpha="0.8"
                     android:scaleType="centerCrop"
                     android:src="@drawable/default_artist_image"
-                    android:transitionName="@string/transition_artist_image"
                     tools:ignore="ContentDescription" />
 
                 <View
@@ -60,7 +49,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    android:layout_gravity="bottom |center"
+                    android:layout_gravity="bottom|center"
                     android:orientation="vertical">
 
                     <TextView
@@ -93,7 +82,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText"/>
 
                         <TextView
                             android:id="@+id/song_count_text"
@@ -107,7 +97,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="4dp"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                            android:text="•" />
+                            android:text="•"
+                            tools:ignore="HardcodedText" />
 
                         <TextView
                             android:id="@+id/duration_text"
@@ -170,6 +161,36 @@
             </LinearLayout>
 
         </com.dkanada.gramophone.views.InceptionScrollView>
+
+        <View
+            android:id="@+id/toolbar_bg"
+            android:layout_width="match_parent"
+            android:layout_height="81dp"
+            android:background="#ffffff" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                style="@style/Toolbar"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/status_bar_padding"
+                android:background="@android:color/transparent"
+                app:layout_constraintStart_toEndOf="@id/cab_stub"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <ViewStub
+                android:id="@+id/cab_stub"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/actionBarSize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/toolbar"
+                app:elevation="0dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
