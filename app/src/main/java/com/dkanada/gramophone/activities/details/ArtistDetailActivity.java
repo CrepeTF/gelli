@@ -1,12 +1,14 @@
 package com.dkanada.gramophone.activities.details;
 
 import android.graphics.PorterDuff;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -89,7 +91,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
 
     @Override
     public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-        float headerAlpha = Math.max(0, Math.min(1, 1 + (2 * (float) verticalOffset / headerViewHeight)));
+        float headerAlpha = 1;
         binding.header.setAlpha(headerAlpha);
     }
 
@@ -164,19 +166,14 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
     }
 
     private void setColors(int color) {
-        toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
 
         setColor(color);
 
-        binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
 
         int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, color);
-        binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        binding.songCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        binding.albumCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
 
         binding.durationText.setTextColor(secondaryTextColor);
         binding.songCountText.setTextColor(secondaryTextColor);
@@ -242,18 +239,21 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void setStatusBarColor(int color) {
-        super.setStatusBarColor(color);
+        super.setStatusBarColor(getColor(R.color.overlay_clear));
 
         // the toolbar is always light at the moment
         setLightStatusBar(false);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void setArtist(Artist artist) {
         this.artist = artist;
 
-        binding.toolbar.setTitle(artist.name);
+        binding.toolbar.setTitleTextColor(getColor(R.color.overlay_clear));
+        binding.artistTitleText.setText(artist.name);
         binding.songCountText.setText(MusicUtil.getSongCountString(this, artist.songs.size()));
         binding.albumCountText.setText(MusicUtil.getAlbumCountString(this, artist.albums.size()));
         binding.durationText.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, artist.songs)));
