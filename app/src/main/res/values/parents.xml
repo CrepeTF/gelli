@@ -10,6 +10,8 @@
         <item name="rectSelector">@drawable/rect_selector_dark</item>
         <item name="rectSelectorStrong">@drawable/rect_selector_strong_dark</item>
 
+        <item name="android:colorBackground">#141414</item>
+
         <item name="cardBackgroundColor">#424242</item>
 
         <item name="defaultFooterColor">#212121</item>
