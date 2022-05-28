@@ -56,6 +56,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/tab_height" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="?attr/dividerColor" />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.viewpager.widget.ViewPager
