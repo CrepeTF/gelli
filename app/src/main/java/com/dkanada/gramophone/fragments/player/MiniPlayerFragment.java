@@ -15,7 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.dkanada.gramophone.databinding.FragmentMiniPlayerBinding;
+import com.dkanada.gramophone.model.Artist;
 import com.dkanada.gramophone.model.Song;
+import com.dkanada.gramophone.util.MusicUtil;
 import com.dkanada.gramophone.util.PreferenceUtil;
 import com.dkanada.gramophone.R;
 import com.dkanada.gramophone.helper.MusicPlayerRemote;
@@ -74,6 +76,7 @@ public class MiniPlayerFragment extends AbsMusicServiceFragment implements Music
         Song song = MusicPlayerRemote.getCurrentSong();
         if (song != null) {
             binding.miniPlayerTitle.setText(song.title);
+            binding.miniPlayerSubtitle.setText(song.artistName);
         }
     }
 
