@@ -10,6 +10,20 @@
 
     <style name="Theme.Phonograph.Notification.Title" parent="@android:style/TextAppearance.StatusBar.EventContent.Title" />
 
+    <style name="Widget.MaterialComponents.TabLayout.Gelli" parent="Widget.Design.TabLayout">
+        <item name="tabGravity">center</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabMinWidth">75dp</item>
+        <item name="tabMode">scrollable</item>
+        <item name="tabIndicatorAnimationMode">elastic</item>
+        <item name="tabIndicatorAnimationDuration">600</item>
+        <item name="tabIndicator">@drawable/tab_indicator_md2</item>
+        <item name="tabTextAppearance">@android:style/TextAppearance</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
     <style name="OverFlowButton">
         <item name="srcCompat">@drawable/ic_more_vert_white_24dp</item>
         <item name="android:layout_margin">8dp</item>

@@ -34,10 +34,10 @@
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
+            style="@style/Widget.MaterialComponents.TabLayout.Gelli"
             android:layout_width="match_parent"
             android:layout_height="@dimen/tab_height"
-            app:tabContentStart="72dp"
-            app:tabMode="scrollable" />
+            app:tabContentStart="72dp" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -51,7 +51,7 @@ public class MusicLibraryPagerAdapter extends FragmentPagerAdapter {
             Holder holder = new Holder();
 
             holder.mClassName = fragment.getFragmentClass().getName();
-            holder.title = mContext.getResources().getString(category.title).toUpperCase();
+            holder.title = mContext.getResources().getString(category.title);
 
             mHolderList.add(holder);
         }
