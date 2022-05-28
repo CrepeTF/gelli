@@ -69,6 +69,7 @@ public class AboutActivity extends AbsBaseActivity implements View.OnClickListen
 
     private void setUpToolbar() {
         binding.toolbar.setBackgroundColor(PreferenceUtil.getInstance(this).getPrimaryColor());
+        binding.toolbar.setElevation(0);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
