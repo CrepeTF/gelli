@@ -2,6 +2,7 @@ package com.dkanada.gramophone.fragments.main;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -11,6 +12,8 @@ import android.view.SubMenu;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.ColorInt;
+import androidx.core.graphics.ColorUtils;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 import androidx.annotation.NonNull;
@@ -50,6 +53,8 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
         setHasOptionsMenu(true);
         binding = FragmentLibraryBinding.inflate(inflater);
 
+        binding.toolbar.setOnClickListener(v -> startActivity(new Intent(getActivity(), SearchActivity.class)));
+
         return binding.getRoot();
     }
 
@@ -85,10 +90,13 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
 
     private void setUpToolbar() {
         int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
-        binding.appbar.setBackgroundColor(primaryColor);
-        binding.toolbar.setBackgroundColor(primaryColor);
+        int alpha = 0; //between 0-255
+        @ColorInt
+        int alphaColor = ColorUtils.setAlphaComponent(primaryColor, alpha);
+
         binding.toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        binding.toolbar.setTitle(R.string.app_name);
+        binding.toolbar.setTitleTextColor(ThemeUtil.getSecondaryTextColor(requireActivity(), primaryColor));
+        binding.toolbar.setTitle(R.string.action_search_library);
         getMainActivity().setSupportActionBar(binding.toolbar);
     }
 
@@ -199,9 +207,9 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
             case R.id.action_new_playlist:
                 CreatePlaylistDialog.create().show(getChildFragmentManager(), "CREATE_PLAYLIST");
                 return true;
-            case R.id.action_search:
-                startActivity(new Intent(getActivity(), SearchActivity.class));
-                return true;
+            //case R.id.action_search:
+            //    startActivity(new Intent(getActivity(), SearchActivity.class));
+            //    return true;
         }
 
         return super.onOptionsItemSelected(item);
