@@ -54,8 +54,7 @@
             android:id="@+id/tabs"
             style="@style/Widget.MaterialComponents.TabLayout.Gelli"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/tab_height"
-            app:tabContentStart="72dp" />
+            android:layout_height="@dimen/tab_height" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
