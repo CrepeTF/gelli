@@ -76,8 +76,9 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
     @Override
     public void onOffsetChanged (AppBarLayout appBarLayout, int verticalOffset) {
-        float headerAlpha = Math.max(0, Math.min(1, 1 + (2 * (float) verticalOffset / headerViewHeight)));
-        binding.header.setAlpha(headerAlpha);
+        float toolbarAlpha = Math.max(0, (-2 * (float) verticalOffset) / headerViewHeight) - 2;
+        binding.toolbarBg.setAlpha(toolbarAlpha);
+
     }
 
     @Override
@@ -116,18 +117,14 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
     private void setColors(int color) {
         toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
+        binding.toolbarBg.setBackgroundColor(getPaletteColor());
 
         setColor(color);
 
-        binding.toolbar.setBackgroundColor(color);
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
 
         int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, color);
-        binding.artistIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        binding.durationIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        binding.songCountIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
-        binding.albumYearIcon.setColorFilter(secondaryTextColor, PorterDuff.Mode.SRC_IN);
 
         binding.artistText.setTextColor(ThemeUtil.getPrimaryTextColor(this, color));
         binding.durationText.setTextColor(secondaryTextColor);
@@ -199,7 +196,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
     @Override
     public void onCreateCab(AttachedCab cab) {
-        cab.backgroundColor(null, getPaletteColor());
+        cab.backgroundColor(null, getColor(R.color.overlay_clear));
 
         this.cab = cab;
     }
@@ -216,7 +213,7 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
     @Override
     public void setStatusBarColor(int color) {
-        super.setStatusBarColor(color);
+        super.setStatusBarColor(getColor(R.color.overlay_clear));
 
         // the toolbar is always light at the moment
         setLightStatusBar(false);
@@ -226,6 +223,8 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
         this.album = album;
 
         binding.toolbar.setTitle(album.title);
+        binding.toolbar.setTitleTextColor(getColor(R.color.overlay_clear));
+        binding.albumTitleText.setText(album.title);
         binding.artistText.setText(album.artistName);
         binding.songCountText.setText(MusicUtil.getSongCountString(this, album.songs.size()));
         binding.durationText.setText(MusicUtil.getReadableDurationString(MusicUtil.getTotalDuration(this, album.songs)));
