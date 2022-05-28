@@ -100,6 +100,7 @@
                 android:layout_marginTop="8dp"
                 app:cardBackgroundColor="?cardBackgroundColor"
                 app:cardElevation="@dimen/card_elevation"
+                app:cardCornerRadius="20dp"
                 app:cardUseCompatPadding="false">
 
                 <RelativeLayout
