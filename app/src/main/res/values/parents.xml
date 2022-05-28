@@ -67,6 +67,37 @@
         <item name="cardBackgroundColor">#212121</item>
     </style>
 
+    <style name="Theme.Phonograph.Modern" parent="@style/Theme.Phonograph.Base">
+
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="windowActionBarOverlay">true</item>
+
+        <item name="roundSelector">@drawable/round_selector_dark</item>
+        <item name="rectSelector">@drawable/rect_selector_dark</item>
+        <item name="rectSelectorStrong">@drawable/rect_selector_strong_dark</item>
+
+        <item name="android:colorBackground">#141414</item>
+
+        <item name="cardBackgroundColor">#222222</item>
+
+        <item name="defaultFooterColor">#212121</item>
+
+        <item name="dividerColor">#10FFFFFF</item>
+        <item name="iconColor">#B3FFFFFF</item>
+
+        <item name="toolbarPopupTheme">@style/ThemeOverlay.AppCompat</item>
+
+        <!-- TextInputLayout uses colorPrimary for the cursor line and bubble -->
+        <item name="colorAccent">@android:color/white</item>
+        <item name="colorPrimary">@android:color/white</item>
+
+        <!-- necessary to find the overflow button later in the layout -->
+        <item name="android:actionOverflowButtonStyle">@style/Widget.ActionButton.Overflow</item>
+
+        <item name="preferenceTheme">@style/PreferenceThemeOverlay</item>
+
+    </style>
+
     <style name="FabParent">
         <item name="borderWidth">0dp</item>
         <item name="android:layout_width">wrap_content</item>
