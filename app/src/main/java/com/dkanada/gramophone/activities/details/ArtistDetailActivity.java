@@ -166,6 +166,7 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
     private void setColors(int color) {
         toolbarColor = color;
         binding.appBarLayout.setBackgroundColor(color);
+        binding.toolbarBg.setBackgroundColor(getPaletteColor());
 
         setColor(color);
 
@@ -181,6 +182,10 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
         binding.durationText.setTextColor(secondaryTextColor);
         binding.songCountText.setTextColor(secondaryTextColor);
         binding.albumCountText.setTextColor(secondaryTextColor);
+
+        binding.durationTextModern.setTextColor(secondaryTextColor);
+        binding.songCountTextModern.setTextColor(secondaryTextColor);
+        binding.albumCountTextModern.setTextColor(secondaryTextColor);
     }
 
     private void setUpToolbar() {
