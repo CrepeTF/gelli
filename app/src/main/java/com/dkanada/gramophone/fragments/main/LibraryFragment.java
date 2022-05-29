@@ -95,7 +95,6 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
         int alphaColor = ColorUtils.setAlphaComponent(primaryColor, alpha);
 
         binding.toolbar.setNavigationIcon(R.drawable.ic_menu_white_24dp);
-        binding.toolbar.setTitleTextColor(ThemeUtil.getSecondaryTextColor(requireActivity(), primaryColor));
         binding.toolbar.setTitle(R.string.action_search_library);
         getMainActivity().setSupportActionBar(binding.toolbar);
     }
@@ -108,7 +107,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
         binding.tabs.setupWithViewPager(binding.pager);
 
         int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
-        int normalColor = ThemeUtil.getSecondaryTextColor(requireActivity(), primaryColor);
+        int normalColor = ThemeUtil.getPrimaryTextColor(requireActivity(), primaryColor);
         int selectedColor = PreferenceUtil.getInstance(requireActivity()).getAccentColor();
         binding.tabs.setTabTextColors(normalColor, selectedColor);
         binding.tabs.setSelectedTabIndicatorColor(PreferenceUtil.getInstance(requireActivity()).getAccentColor());
