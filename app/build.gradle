@@ -15,6 +15,7 @@ android {
         vectorDrawables {
             useSupportLibrary true
         }
+        applicationId 'com.crepetf.gramophone'
     }
 
     signingConfigs {
