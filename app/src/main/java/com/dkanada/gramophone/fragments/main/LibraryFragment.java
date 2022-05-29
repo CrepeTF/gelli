@@ -107,7 +107,7 @@ public class LibraryFragment extends AbsMainActivityFragment implements ViewPage
         binding.tabs.setupWithViewPager(binding.pager);
 
         int primaryColor = PreferenceUtil.getInstance(requireActivity()).getPrimaryColor();
-        int normalColor = ThemeUtil.getPrimaryTextColor(requireActivity(), primaryColor);
+        int normalColor = ThemeUtil.getSecondaryTextColor(requireActivity(), primaryColor);
         int selectedColor = PreferenceUtil.getInstance(requireActivity()).getAccentColor();
         binding.tabs.setTabTextColors(normalColor, selectedColor);
         binding.tabs.setSelectedTabIndicatorColor(PreferenceUtil.getInstance(requireActivity()).getAccentColor());
