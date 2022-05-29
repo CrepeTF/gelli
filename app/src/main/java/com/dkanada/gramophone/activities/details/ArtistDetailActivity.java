@@ -104,12 +104,6 @@ public class ArtistDetailActivity extends AbsMusicContentActivity implements Pal
 
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
-
-        int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, color);
-
-        binding.durationText.setTextColor(secondaryTextColor);
-        binding.songCountText.setTextColor(secondaryTextColor);
-        binding.albumCountText.setTextColor(secondaryTextColor);
     }
 
     @Override

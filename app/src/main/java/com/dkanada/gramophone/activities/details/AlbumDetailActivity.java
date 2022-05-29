@@ -123,13 +123,6 @@ public class AlbumDetailActivity extends AbsMusicContentActivity implements Pale
 
         // needed to auto readjust the toolbar content color
         setSupportActionBar(binding.toolbar);
-
-        int secondaryTextColor = ThemeUtil.getSecondaryTextColor(this, color);
-
-        binding.artistText.setTextColor(ThemeUtil.getPrimaryTextColor(this, color));
-        binding.durationText.setTextColor(secondaryTextColor);
-        binding.songCountText.setTextColor(secondaryTextColor);
-        binding.albumYearText.setTextColor(secondaryTextColor);
     }
 
     @Override
